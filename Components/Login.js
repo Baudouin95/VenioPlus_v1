@@ -21,7 +21,7 @@ class Login extends React.Component{
 
     _login() {
         const { userEmail, userPassword } = this.state
-        fetch('http://192.168.1.49:80/test/index.php',{
+        fetch('http://10.130.226.166:8080/venio/index.php',{
             method: 'post',
             header: {
                 'Accept': 'application/json',
@@ -33,11 +33,10 @@ class Login extends React.Component{
                 password: userPassword
             })
         })
-        .then((Response) => Response.json())
-        .then((ResponseJson) => {
-            if(ResponseJson == "Ok"){
+        .then((response) => response.json())
+        .then((responseJson) => {
+            if(responseJson == "OK"){
                 // On redirige l'utilisateur sur son profile
-                alert("Successfully Login")
                 this.props.navigation.navigate("Profile")
             } else {
                 alert("Wrong Details")
